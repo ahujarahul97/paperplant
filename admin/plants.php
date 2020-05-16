@@ -10,7 +10,7 @@ die;
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Plans</title>
+<title>Plants</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Glance Design Dashboard Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -59,7 +59,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             </button>
-            <h1><a class="navbar-brand" href="../index.php"><span class="fa fa-area-chart"></span> VKREATE<span class="dashboard_text">Known for Kreativity</span></a></h1>
+            <h1><a class="navbar-brand" href="../index.php"><span class="fa fa-area-chart"></span> PAPERPLANT<span class="dashboard_text">Be Eco-Friendly</span></a></h1>
           </div>
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="sidebar-menu">
@@ -86,14 +86,25 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
               
                 <li class="treeview">
                 <a href="#">
-                <i class="fa fa-table"></i> <span>Plans</span>
+                <i class="fa fa-table"></i> <span>Plants</span>
                 <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 	<ul class="treeview-menu">
-                  	<li><a href="plans.php"><i class="fa fa-angle-right"></i> Show Plans</a></li>
-                  	<li><a href="add.php"><i class="fa fa-angle-right"></i> Add Plan</a></li>
+                  	<li><a href="plants.php"><i class="fa fa-angle-right"></i> Show Plants</a></li>
+                  	<li><a href="add.php"><i class="fa fa-angle-right"></i> Add Plants</a></li>
                   	<!-- <li><a href="delete.php"><i class="fa fa-angle-right"></i> Delete Plan </a></li> -->
                 	</ul>
+              </li>
+			  
+			  <li class="treeview">
+                <a href="#">
+                <i class="fa fa-table"></i> <span>Scrap</span>
+                <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                    <ul class="treeview-menu">
+                    <li><a href="showscrap.php"><i class="fa fa-angle-right"></i> Show Scraps</a></li>
+                    <li><a href="addscrap.php"><i class="fa fa-angle-right"></i> Add Scraps</a></li>
+                    </ul>
               </li>
               
               
@@ -136,7 +147,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 						<li class="dropdown profile_details_drop">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 								<div class="profile_img">	
-									<span class="prfil-img"><img src="images/2.jpg" alt=""> </span> 
+									<span class="prfil-img"><img src="images/admin.png" alt=""> </span> 
 									<div class="user-name">
 										<p><?php echo $_SESSION['firstname']." ".$_SESSION['lastname']; ?></p>
 										<span>Administrator</span>
@@ -175,9 +186,10 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 						<tr> 
 							<th>id</th> 
 							<th>Name</th> 
-							<th>Plan</th> 
+							<th>Cost</th> 
 							<th>Status</th> 
-							<th>Description</th>
+							<th>Type</th>
+							<th>Image</th>
 							<th>Actions</th>
 						</tr>
 						</thead> 
@@ -190,7 +202,6 @@ $i=1;
 
 function printResultSet(&$rowset, $i)
 {  $j=1;
-	
     foreach ($rowset as $row) 
     {	
 
@@ -198,6 +209,7 @@ function printResultSet(&$rowset, $i)
     	
     	echo "<tr>";
     	$count=1;
+		$x=0;
        foreach ($row as $col) 
        {	
        		if($count==1)
@@ -205,10 +217,18 @@ function printResultSet(&$rowset, $i)
        		//echo "<input type='hidden' name='action".$j."' value='".$col."'>";
        		$_SESSION['id']=$col;	
        		}
+			if($x==5)
+			{
+				echo "<td><img src='plantimage/".$col."' height=\"50\" width=\"50\"></td>";
+			}
+			else
+			{
             echo "<td>".$col."</td>";
+			}
+			$x++;
            $count++;
        }
-       echo "<td width=\"15%\"><a href=\"editplans.php?id=".$_SESSION['id']."\"><input type='button' value='Edit' class='btn btn-primary'></a> <a onClick=\"javascript: return confirm('Please confirm deletion');\" href='deleteplansaction.php?id=".$_SESSION['id']."'><input type='button' value='Delete' class='btn btn-primary'></a></td></tr>";
+	   echo "<td width=\"15%\"><a href=\"editplants.php?id=".$_SESSION['id']."\"><input type='button' value='Edit' class='btn btn-primary'></a> <a onClick=\"javascript: return confirm('Please confirm deletion');\" href='deleteplantsaction.php?id=".$_SESSION['id']."'><input type='button' value='Delete' class='btn btn-primary'></a></td></tr>";
         echo "</form>";
         $j++;
     }
@@ -217,13 +237,11 @@ function printResultSet(&$rowset, $i)
 try
 {
 	require("../connection.php");
-	$sql="SELECT id,name,cost,status,description from plans";
+	$sql="SELECT Plant_ID,Name,Purchase_Price,status,Location,image from plant";
 	$stmt = $pdo->query($sql); 
-
 	do
 	{
     	$rowset = $stmt->fetchAll(PDO::FETCH_NUM);
-    	
     	if ($rowset) 
     	{
     	printResultSet($rowset, $i);

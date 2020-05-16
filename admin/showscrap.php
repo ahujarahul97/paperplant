@@ -10,10 +10,11 @@ die;
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Users</title>
+<title>Scrap</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="VKREATE rounak" />
+<meta name="keywords" content="Glance Design Dashboard Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 
 <!-- Bootstrap Core CSS -->
@@ -58,7 +59,7 @@ die;
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             </button>
-            <h1><a class="navbar-brand" href="../index.php"><span class="fa fa-area-chart"></span> PAPERPLANT <span class="dashboard_text">Be Eco-Friendly</span></a></h1>
+            <h1><a class="navbar-brand" href="../index.php"><span class="fa fa-area-chart"></span> PAPERPLANT<span class="dashboard_text">Be Eco-Friendly</span></a></h1>
           </div>
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="sidebar-menu">
@@ -77,8 +78,7 @@ die;
                 </a>
                  <ul class="treeview-menu">
                   <li><a href="users.php"><i class="fa fa-angle-right"></i> All Users</a></li>
-                  <li><a href="tables.html"><i class="fa fa-angle-right"></i> Active Users</a></li>
-                  <li><a href="tables.html"><i class="fa fa-angle-right"></i> Users With Subscriptions</a></li>
+                  
                 </ul>
                 <!-- </a> -->
                 
@@ -90,12 +90,12 @@ die;
                 <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 	<ul class="treeview-menu">
-                  	<li><a href="plans.php"><i class="fa fa-angle-right"></i> Show Plants</a></li>
-                  	<li><a href="add.php"><i class="fa fa-angle-right"></i> Add Plant</a></li>
-                  	<li><a href="tables.html"><i class="fa fa-angle-right"></i> Delete Plant </a></li>
+                  	<li><a href="plants.php"><i class="fa fa-angle-right"></i> Show Plants</a></li>
+                  	<li><a href="add.php"><i class="fa fa-angle-right"></i> Add Plants</a></li>
+                  	<!-- <li><a href="delete.php"><i class="fa fa-angle-right"></i> Delete Plan </a></li> -->
                 	</ul>
               </li>
-              
+			  
 			  <li class="treeview">
                 <a href="#">
                 <i class="fa fa-table"></i> <span>Scrap</span>
@@ -106,6 +106,7 @@ die;
                     <li><a href="addscrap.php"><i class="fa fa-angle-right"></i> Add Scraps</a></li>
                     </ul>
               </li>
+              
               
             </ul>
           </div>
@@ -146,7 +147,7 @@ die;
 						<li class="dropdown profile_details_drop">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 								<div class="profile_img">	
-									<span class="prfil-img"><img src="images/2.jpg" alt=""> </span> 
+									<span class="prfil-img"><img src="images/admin.png" alt=""> </span> 
 									<div class="user-name">
 										<p><?php echo $_SESSION['firstname']." ".$_SESSION['lastname']; ?></p>
 										<span>Administrator</span>
@@ -170,63 +171,95 @@ die;
 			<div class="clearfix"> </div>	
 		</div>
 		<!-- //header-ends -->
-
-
-
-
-
-<!--  -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 		<!-- main content start-->
 		<div id="page-wrapper">
 			<div class="main-page">
 				<div class="tables">
-					<h2 class="title1">Delete Plan</h2>
-					<div class="panel-body widget-shadow">
-						<div class="form-body">
-									<form data-toggle="validator" action="deleteplan.php" method="POST" >
-										<div class="form-group has-feedback">
-											<input type="number" class="form-control" id="inputid" name="id" placeholder="Enter id of plan " data-error="The Id is invalid " required>
-											<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-										</div>
-										<div class="form-group">
-											<input type="password" data-toggle="validator" data-minlength="6" class="form-control" id="inputPassword" name="password" placeholder="Enter Password" required>
-										</div>
-										<div class="bottom">
-											<div class="form-group">
-												<button type="submit" class="btn btn-primary">Delete</button>
-											</div>
-										</div>
-									</form>
-								</div>
+					
 
+
+					<div class="bs-example widget-shadow" data-example-id="hoverable-table"> 
+						<h4>Scraps:</h4>
+						
+						<table class="table table-hover"> 
+						<thead> 
+						<tr> 
+							<th>id</th> 
+							<th>Name</th> 
+							<th>Purchase Price</th> 
+							<th>Status</th> 
+							<th>Image</th>
+							<th>Actions</th>
+						</tr>
+						</thead> 
+						<tbody> 
+						
+
+						<?php
+						//session_start();
+$i=1;
+
+function printResultSet(&$rowset, $i)
+{  $j=1;
+    foreach ($rowset as $row) 
+    {	
+
+    	echo "<form name='f".$j."' action='takeaction.php' method='POST'>";
+    	
+    	echo "<tr>";
+    	$count=1;
+		$x=0;
+       foreach ($row as $col) 
+       {	
+       		if($count==1)
+       		{
+       		//echo "<input type='hidden' name='action".$j."' value='".$col."'>";
+       		$_SESSION['id']=$col;	
+       		}
+			if($x==4)
+			{
+				echo "<td><img src='scrapimage/".$col."' height=\"50\" width=\"50\"></td>";
+			}
+			else
+			{
+            echo "<td>".$col."</td>";
+			}
+			$x++;
+           $count++;
+       }
+	   echo "<td width=\"15%\"><a href=\"editscrap.php?id=".$_SESSION['id']."\"><input type='button' value='Edit' class='btn btn-primary'></a> <a onClick=\"javascript: return confirm('Please confirm deletion');\" href='deletescrapaction.php?id=".$_SESSION['id']."'><input type='button' value='Delete' class='btn btn-primary'></a></td></tr>";
+        echo "</form>";
+        $j++;
+    }
+}
+
+try
+{
+	require("../connection.php");
+	$sql="SELECT Scrap_ID,Name,Purchase_rate,status,image from scrap";
+	$stmt = $pdo->query($sql); 
+	do
+	{
+    	$rowset = $stmt->fetchAll(PDO::FETCH_NUM);
+    	if ($rowset) 
+    	{
+    	printResultSet($rowset, $i);
+    	}
+    	$i++;
+	} while ($stmt->nextRowset());
+
+}	
+catch(Exception $e)
+{
+	echo $e;
+}
+?>
+						
+						</tbody> 
+						</table>
+						
+					</div>
+					
 				</div>
 			</div>
 		</div>

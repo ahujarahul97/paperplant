@@ -6,28 +6,11 @@ if ($_SESSION['type']!=2)
 header("location:../index.php");
 die;
 }
-
-try
-{
-require("../connection.php");
-$sql="SELECT * FROM plans where id=".$_GET['id'];
-$res = $pdo->query($sql); 
-$row = $res->fetch();
-$_SESSION['id']=$_GET['id'];
-
-
-}
-catch(Exception $e)
-{
-    echo "$e";
-}
 ?>
-<?php $row['status']?print('checked'):print('');?>
-
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Plans</title>
+<title>Plants</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Glance Design Dashboard Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -76,7 +59,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             </button>
-            <h1><a class="navbar-brand" href="../index.php"><span class="fa fa-area-chart"></span> VKREATE<span class="dashboard_text">Known for Kreativity</span></a></h1>
+            <h1><a class="navbar-brand" href="../index.php"><span class="fa fa-area-chart"></span> PAPERPLANT<span class="dashboard_text">Be Eco-Friendly</span></a></h1>
           </div>
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="sidebar-menu">
@@ -103,13 +86,24 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
               
                 <li class="treeview">
                 <a href="#">
-                <i class="fa fa-table"></i> <span>Plans</span>
+                <i class="fa fa-table"></i> <span>Plants</span>
                 <i class="fa fa-angle-left pull-right"></i>
                 </a>
                     <ul class="treeview-menu">
-                    <li><a href="plans.php"><i class="fa fa-angle-right"></i> Show Plans</a></li>
-                    <li><a href="add.php"><i class="fa fa-angle-right"></i> Add Plan</a></li>
+                    <li><a href="plants.php"><i class="fa fa-angle-right"></i> Show Plants</a></li>
+                    <li><a href="add.php"><i class="fa fa-angle-right"></i> Add Plants</a></li>
                     <!-- <li><a href="delete.php"><i class="fa fa-angle-right"></i> Delete Plan </a></li> -->
+                    </ul>
+              </li>
+			  
+			  <li class="treeview">
+                <a href="#">
+                <i class="fa fa-table"></i> <span>Scrap</span>
+                <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                    <ul class="treeview-menu">
+                    <li><a href="scrap.php"><i class="fa fa-angle-right"></i> Show Scraps</a></li>
+                    <li><a href="addscrap.php"><i class="fa fa-angle-right"></i> Add Scraps</a></li>
                     </ul>
               </li>
               
@@ -153,7 +147,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                         <li class="dropdown profile_details_drop">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                 <div class="profile_img">   
-                                    <span class="prfil-img"><img src="images/2.jpg" alt=""> </span> 
+                                    <span class="prfil-img"><img src="images/admin.png" alt=""> </span> 
                                     <div class="user-name">
                                         <p><?php echo $_SESSION['firstname']." ".$_SESSION['lastname']; ?></p>
                                         <span>Administrator</span>
@@ -182,46 +176,66 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
             <div class="main-page">
                 
             <div class="row">
-                        <h3 class="title1">Plan Detail Page :</h3>
+                        <h3 class="title1">Plant Detail Page :</h3>
                         <div class="form-three widget-shadow">
-                            <form action="editplansaction.php" method="POST" class="form-horizontal">
+                            <form action="addplants.php" method="POST" class="form-horizontal" enctype="multipart/form-data">
                                 <div class="form-group">
-                                    <label for="focusedinput" class="col-sm-2 control-label">Plan's Name</label>
+                                    <label for="focusedinput" class="col-sm-2 control-label">Plant's Name</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control1" id="focusedinput" name="name" placeholder="Name of Plan" value="<?php echo $row['name']; ?>">
+                                        <input type="text" class="form-control1" id="focusedinput" name="plantname" placeholder="Name of Plant">
                                     </div>
-                                    <div class="col-sm-2">
-                                      
-                                    </div>
+                                    <!--<div class="col-sm-2">
+                                        <p class="help-block">Your help text!</p>
+                                    </div>-->
                                 </div>
                                 <div class="form-group">
-                                    <label for="disabledinput" class="col-sm-2 control-label">Plan's Cost $</label>
+                                    <label for="disabledinput" class="col-sm-2 control-label">Plant's Cost </label>
                                     <div class="col-sm-8">
-                                        <input type="number" class="form-control1" id="focusedinput" name="cost" placeholder="Enter a number only" value="<?php echo $row['cost']; ?>">
+                                        <input type="number" class="form-control1" id="focusedinput" name="cost" placeholder="Enter amount">
                                     </div>
                                 </div>
-                                
-                                <div class="form-group">
-                                    <label for="txtarea1" class="col-sm-2 control-label">Description</label>
-                                    <div class="col-sm-8"><textarea id="txtarea1" name="description" cols="96" rows="10" class="" ><?php echo $row['description']; ?></textarea></div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="radio" class="col-sm-2 control-label">Plan's Status</label>
+								                                
+								<div class="form-group">
+                                    <label for="radio" class="col-sm-2 control-label">Plant Type</label>
                                     <div class="col-sm-8">
-                                        <div class="radio block"><label><input type="radio" name="status" value="1" <?php $row['status']?print('checked'):print('');?> > Active</label></div>
-                                        <div class="radio block"><label><input type="radio" name="status" value="0" <?php $row['status']?print(''):print('checked');?> > Unactive</label></div>
+                                        <div class="radio block"><label><input type="radio" name="planttype" value="indoor"> Indoor</label></div>
+                                        <div class="radio block"><label><input type="radio" name="planttype" value="outdoor"> Outdoor</label></div>
+                                    </div>
+                                </div>
+								
+								<div class="form-group">
+                                    <label for="uploadimage" class="col-sm-2 control-label">Plant's Image </label>
+                                    <div class="col-sm-8">
+                                        <input type="file" class="form-control1" id="plantimage" name="plantimage">
+                                    </div>
+                                </div>
+								
+                                <div class="form-group">
+                                    <label for="radio" class="col-sm-2 control-label">Plant's Status</label>
+                                    <div class="col-sm-8">
+                                        <div class="radio block"><label><input type="radio" name="r1" value="1"> Active</label></div>
+                                        <div class="radio block"><label><input type="radio" name="r1" value="0"> Unactive</label></div>
                                        <!--  <div class="radio block"><label><input type="radio" disabled=""> Later</label></div>
                                         <div class="radio block"><label><input type="radio" disabled="" checked=""> Disabled Checked</label></div> -->
                                     </div>
                                 </div>
-                               
-                                <div class="col-sm-offset-2"> <button type="submit" class="btn btn-default">Save</button> </div>
+								
+								
+								<!--<div class="form-group">
+                                    <label for="planttype" class="col-sm-2 control-label">Plant Type</label>
+                                    <div class="col-sm-8"><select name="planttype" id="planttype">
+															<option value="Indoor">Indoor</option>
+															<option value="Outdoor">Outdoor</option>
+									</div>
+                                </div>-->
+
+                                <div class="col-sm-offset-2"> <button type="submit" class="btn btn-default">Add</button> </div>
                                 
                             </form>
                         </div>
                     </div>
         </div>
-       
+        
 
     </div>
     

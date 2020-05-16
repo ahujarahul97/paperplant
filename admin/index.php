@@ -59,7 +59,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             </button>
-            <h1><a class="navbar-brand" href="../index.php"><span class="fa fa-area-chart"></span> VKREATE<span class="dashboard_text">Known for Kreativity</span></a></h1>
+            <h1><a class="navbar-brand" href="../index.php"><span class="fa fa-area-chart"></span> Paperplant<span class="dashboard_text">Be Eco-Friendly</span></a></h1>
           </div>
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="sidebar-menu">
@@ -86,13 +86,24 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
               
                 <li class="treeview">
                 <a href="#">
-                <i class="fa fa-table"></i> <span>Plans</span>
+                <i class="fa fa-table"></i> <span>Plants</span>
                 <i class="fa fa-angle-left pull-right"></i>
                 </a>
                     <ul class="treeview-menu">
-                    <li><a href="plans.php"><i class="fa fa-angle-right"></i> Show Plans</a></li>
-                    <li><a href="add.php"><i class="fa fa-angle-right"></i> Add Plan</a></li>
-                    <!-- <li><a href="delete.php"><i class="fa fa-angle-right"></i> Delete Plan </a></li> -->
+                    <li><a href="plants.php"><i class="fa fa-angle-right"></i> Show Plants</a></li>
+                    <li><a href="add.php"><i class="fa fa-angle-right"></i> Add Plants</a></li>
+                    <!-- <li><a href="delete.php"><i class="fa fa-angle-right"></i> Delete Plants </a></li> -->
+                    </ul>
+              </li>
+			  
+			   <li class="treeview">
+                <a href="#">
+                <i class="fa fa-table"></i> <span>Scrap</span>
+                <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                    <ul class="treeview-menu">
+                    <li><a href="showscrap.php"><i class="fa fa-angle-right"></i> Show Scraps</a></li>
+                    <li><a href="addscrap.php"><i class="fa fa-angle-right"></i> Add Scraps</a></li>
                     </ul>
               </li>
                 
@@ -138,7 +149,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                         <li class="dropdown profile_details_drop">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                 <div class="profile_img">   
-                                    <span class="prfil-img"><img src="images/2.jpg" alt=""> </span> 
+                                    <span class="prfil-img"><img src="images/admin.png" alt=""> </span> 
                                     <div class="user-name">
                                         <p><?php echo $_SESSION['firstname']." ".$_SESSION['lastname']; ?></p>
                                         <span>Administrator</span>

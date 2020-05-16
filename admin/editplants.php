@@ -6,7 +6,24 @@ if ($_SESSION['type']!=2)
 header("location:../index.php");
 die;
 }
+
+try
+{
+require("../connection.php");
+$sql="SELECT * FROM plant where Plant_ID=".$_GET['id'];
+$res = $pdo->query($sql); 
+$row = $res->fetch();
+$_SESSION['id']=$_GET['id'];
+
+
+}
+catch(Exception $e)
+{
+    echo "$e";
+}
 ?>
+<?php $row['status']?print('checked'):print('');?>
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -91,7 +108,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                 </a>
                     <ul class="treeview-menu">
                     <li><a href="plants.php"><i class="fa fa-angle-right"></i> Show Plants</a></li>
-                    <li><a href="add.php"><i class="fa fa-angle-right"></i> Add Plants</a></li>
+                    <li><a href="add.php"><i class="fa fa-angle-right"></i> Add Plant</a></li>
                     <!-- <li><a href="delete.php"><i class="fa fa-angle-right"></i> Delete Plan </a></li> -->
                     </ul>
               </li>
@@ -147,7 +164,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                         <li class="dropdown profile_details_drop">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                 <div class="profile_img">   
-                                    <span class="prfil-img"><img src="images/admin.png" alt=""> </span> 
+                                    <span class="prfil-img"><img src="images/admin.jpg" alt=""> </span> 
                                     <div class="user-name">
                                         <p><?php echo $_SESSION['firstname']." ".$_SESSION['lastname']; ?></p>
                                         <span>Administrator</span>
@@ -178,64 +195,48 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
             <div class="row">
                         <h3 class="title1">Plant Detail Page :</h3>
                         <div class="form-three widget-shadow">
-                            <form action="addplants.php" method="POST" class="form-horizontal" enctype="multipart/form-data">
+                            <form action="editplantsaction.php" method="POST" class="form-horizontal">
                                 <div class="form-group">
-                                    <label for="focusedinput" class="col-sm-2 control-label">Plant's Name</label>
+                                    <label for="focusedinput" class="col-sm-2 control-label">Plant Name</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control1" id="focusedinput" name="plantname" placeholder="Name of Plant">
+                                        <input type="text" class="form-control1" id="focusedinput" name="name" placeholder="Name of Plan" value="<?php echo $row['Name']; ?>">
                                     </div>
-                                    <!--<div class="col-sm-2">
-                                        <p class="help-block">Your help text!</p>
-                                    </div>-->
+                                    <div class="col-sm-2">
+                                      
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="disabledinput" class="col-sm-2 control-label">Plant's Cost </label>
                                     <div class="col-sm-8">
-                                        <input type="number" class="form-control1" id="focusedinput" name="cost" placeholder="Enter amount">
+                                        <input type="number" class="form-control1" id="focusedinput" name="cost" placeholder="Enter amount" value="<?php echo $row['Purchase_Price']; ?>">
                                     </div>
                                 </div>
-								                                
-								<div class="form-group">
+                                
+                                <div class="form-group">
                                     <label for="radio" class="col-sm-2 control-label">Plant Type</label>
                                     <div class="col-sm-8">
-                                        <div class="radio block"><label><input type="radio" name="planttype" value="indoor"> Indoor</label></div>
-                                        <div class="radio block"><label><input type="radio" name="planttype" value="outdoor"> Outdoor</label></div>
-                                    </div>
+                                        <div class="radio block"><label><input type="radio" name="planttype" value="indoor" <?php strcmp($row['Location'],"indoor")?print(''):print('checked');?> > Indoor</label></div>
+                                        <div class="radio block"><label><input type="radio" name="planttype" value="outdoor" <?php strcmp($row['Location'],"outdoor")?print(''):print('checked');?> > Outdoor</label></div>
+                                      </div>
                                 </div>
 								
 								<div class="form-group">
-                                    <label for="uploadimage" class="col-sm-2 control-label">Plant's Image </label>
+                                    <label for="radio" class="col-sm-2 control-label">Plant Status</label>
                                     <div class="col-sm-8">
-                                        <input type="file" class="form-control1" id="plantimage" name="plantimage">
-                                    </div>
-                                </div>
-								
-                                <div class="form-group">
-                                    <label for="radio" class="col-sm-2 control-label">Plant's Status</label>
-                                    <div class="col-sm-8">
-                                        <div class="radio block"><label><input type="radio" name="r1" value="1"> Active</label></div>
-                                        <div class="radio block"><label><input type="radio" name="r1" value="0"> Unactive</label></div>
+                                        <div class="radio block"><label><input type="radio" name="status" value="1" <?php $row['status']?print('checked'):print('');?> > Active</label></div>
+                                        <div class="radio block"><label><input type="radio" name="status" value="0" <?php $row['status']?print(''):print('checked');?> > Unactive</label></div>
                                        <!--  <div class="radio block"><label><input type="radio" disabled=""> Later</label></div>
                                         <div class="radio block"><label><input type="radio" disabled="" checked=""> Disabled Checked</label></div> -->
                                     </div>
                                 </div>
-								
-								
-								<!--<div class="form-group">
-                                    <label for="planttype" class="col-sm-2 control-label">Plant Type</label>
-                                    <div class="col-sm-8"><select name="planttype" id="planttype">
-															<option value="Indoor">Indoor</option>
-															<option value="Outdoor">Outdoor</option>
-									</div>
-                                </div>-->
-
-                                <div class="col-sm-offset-2"> <button type="submit" class="btn btn-default">Add</button> </div>
+                               
+                                <div class="col-sm-offset-2"> <button type="submit" class="btn btn-default">Save</button> </div>
                                 
                             </form>
                         </div>
                     </div>
         </div>
-        
+       
 
     </div>
     

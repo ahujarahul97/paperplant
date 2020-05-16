@@ -10,7 +10,7 @@ die;
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Plants</title>
+<title>Scrap</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Glance Design Dashboard Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -176,60 +176,41 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
             <div class="main-page">
                 
             <div class="row">
-                        <h3 class="title1">Plant Detail Page :</h3>
+                        <h3 class="title1">Scrap Detail Page :</h3>
                         <div class="form-three widget-shadow">
-                            <form action="addplants.php" method="POST" class="form-horizontal" enctype="multipart/form-data">
+                            <form action="addscrapaction.php" method="POST" class="form-horizontal" enctype="multipart/form-data">
                                 <div class="form-group">
-                                    <label for="focusedinput" class="col-sm-2 control-label">Plant's Name</label>
+                                    <label for="focusedinput" class="col-sm-2 control-label">Scrap Name</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control1" id="focusedinput" name="plantname" placeholder="Name of Plant">
+                                        <input type="text" class="form-control1" id="focusedinput" name="scrapname" placeholder="Name of Plant">
                                     </div>
                                     <!--<div class="col-sm-2">
                                         <p class="help-block">Your help text!</p>
                                     </div>-->
                                 </div>
                                 <div class="form-group">
-                                    <label for="disabledinput" class="col-sm-2 control-label">Plant's Cost </label>
+                                    <label for="disabledinput" class="col-sm-2 control-label">Scrap Purchase Cost </label>
                                     <div class="col-sm-8">
-                                        <input type="number" class="form-control1" id="focusedinput" name="cost" placeholder="Enter amount">
-                                    </div>
-                                </div>
-								                                
-								<div class="form-group">
-                                    <label for="radio" class="col-sm-2 control-label">Plant Type</label>
-                                    <div class="col-sm-8">
-                                        <div class="radio block"><label><input type="radio" name="planttype" value="indoor"> Indoor</label></div>
-                                        <div class="radio block"><label><input type="radio" name="planttype" value="outdoor"> Outdoor</label></div>
+                                        <input type="number" class="form-control1" id="focusedinput" name="cost" placeholder="Enter cost per kg">
                                     </div>
                                 </div>
 								
 								<div class="form-group">
-                                    <label for="uploadimage" class="col-sm-2 control-label">Plant's Image </label>
+                                    <label for="uploadimage" class="col-sm-2 control-label">Scrap Image </label>
                                     <div class="col-sm-8">
-                                        <input type="file" class="form-control1" id="plantimage" name="plantimage">
+                                        <input type="file" class="form-control1" id="scrapimage" name="scrapimage">
                                     </div>
                                 </div>
 								
                                 <div class="form-group">
-                                    <label for="radio" class="col-sm-2 control-label">Plant's Status</label>
+                                    <label for="radio" class="col-sm-2 control-label">Scrap Status</label>
                                     <div class="col-sm-8">
-                                        <div class="radio block"><label><input type="radio" name="r1" value="1"> Active</label></div>
-                                        <div class="radio block"><label><input type="radio" name="r1" value="0"> Unactive</label></div>
-                                       <!--  <div class="radio block"><label><input type="radio" disabled=""> Later</label></div>
-                                        <div class="radio block"><label><input type="radio" disabled="" checked=""> Disabled Checked</label></div> -->
+                                        <div class="radio block"><label><input type="radio" name="status" value="1"> Active</label></div>
+                                        <div class="radio block"><label><input type="radio" name="status" value="0"> Unactive</label></div>
                                     </div>
                                 </div>
-								
-								
-								<!--<div class="form-group">
-                                    <label for="planttype" class="col-sm-2 control-label">Plant Type</label>
-                                    <div class="col-sm-8"><select name="planttype" id="planttype">
-															<option value="Indoor">Indoor</option>
-															<option value="Outdoor">Outdoor</option>
-									</div>
-                                </div>-->
-
-                                <div class="col-sm-offset-2"> <button type="submit" class="btn btn-default">Add</button> </div>
+						
+								<div class="col-sm-offset-2"> <button type="submit" class="btn btn-default">Add</button> </div>
                                 
                             </form>
                         </div>
