@@ -18,13 +18,13 @@
 	 
 	require("../connection.php");
 	//$description=cleanInputSQL($_POST['description']);
-	$sql = "INSERT INTO scrap (Name, PR_GOOD, PR_MED, PR_BAD, Purchase_rate, Sell_rate, image, status)
-            VALUES ('".$_POST['scrapname']."', 1.0, 0.8, 0.5, ".$purprice.",".$sellprice.", '".$name."','".$_POST['status']."')";
+	$sql = "INSERT INTO scrap (Name, PR_GOOD, PR_MED, PR_BAD, Purchase_rate, Sell_rate, Unit, image, status)
+            VALUES ('".$_POST['scrapname']."', 1.0, 0.8, 0.5, ".$purprice.",".$sellprice.", '".$_POST['unit']."', '".$name."','".$_POST['status']."')";
             $pdo->exec($sql);
 			
 			// Upload file
      move_uploaded_file($_FILES['scrapimage']['tmp_name'],$target_dir.$name);
-    //header("location:showscrap.php");        
+    header("location:showscrap.php");        
   }
 
 ?>

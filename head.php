@@ -29,7 +29,7 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item"> <a class="nav-link js-scroll-trigger" href="index.php">Home</a> </li>
                     <!-- <li class="nav-item"> <a class="nav-link js-scroll-trigger" href="#service">Services</a> </li> -->
-                    <li class="nav-item"> <a class="nav-link js-scroll-trigger" href="price.php">Price List</a> </li>
+                    <li class="nav-item"> <a class="nav-link js-scroll-trigger" href="scrap.php">Price List</a> </li>
 					<li class="nav-item"> <a class="nav-link js-scroll-trigger" href="sell.php">Schedule Pickup</a> </li>
                   <!--  <li class="nav-item"> <a class="nav-link js-scroll-trigger" href="#signup">Sign up</a> </li> -->
                 </ul>

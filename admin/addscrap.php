@@ -196,6 +196,14 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                                 </div>
 								
 								<div class="form-group">
+                                    <label for="radio" class="col-sm-2 control-label">Scrap Purchase Unit</label>
+                                    <div class="col-sm-8">
+                                        <div class="radio block"><label><input type="radio" name="unit" value="per kg"> Per kg</label></div>
+                                        <div class="radio block"><label><input type="radio" name="unit" value="per piece"> Per piece</label></div>
+                                    </div>
+                                </div>
+								
+								<div class="form-group">
                                     <label for="uploadimage" class="col-sm-2 control-label">Scrap Image </label>
                                     <div class="col-sm-8">
                                         <input type="file" class="form-control1" id="scrapimage" name="scrapimage">

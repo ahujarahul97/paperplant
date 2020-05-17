@@ -212,7 +212,14 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                                     </div>
                                 </div>
                                 
-                               
+								<div class="form-group">
+                                    <label for="radio" class="col-sm-2 control-label">Purchase Unit</label>
+                                    <div class="col-sm-8">
+                                        <div class="radio block"><label><input type="radio" name="unit" value="per kg" <?php strcmp($row['Unit'],"per kg")?print(''):print('checked');?> > per kg</label></div>
+                                        <div class="radio block"><label><input type="radio" name="unit" value="per piece" <?php strcmp($row['Unit'],"per piece")?print(''):print('checked');?> > per piece</label></div>
+                                      </div>
+                                </div>
+								
 								<div class="form-group">
                                     <label for="radio" class="col-sm-2 control-label">Scrap Status</label>
                                     <div class="col-sm-8">

@@ -186,7 +186,8 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 						<tr> 
 							<th>id</th> 
 							<th>Name</th> 
-							<th>Purchase Price</th> 
+							<th>Purchase Price</th>
+							<th>Purchase Unit</th>
 							<th>Status</th> 
 							<th>Image</th>
 							<th>Actions</th>
@@ -216,7 +217,7 @@ function printResultSet(&$rowset, $i)
        		//echo "<input type='hidden' name='action".$j."' value='".$col."'>";
        		$_SESSION['id']=$col;	
        		}
-			if($x==4)
+			if($x==5)
 			{
 				echo "<td><img src='scrapimage/".$col."' height=\"50\" width=\"50\"></td>";
 			}
@@ -236,7 +237,7 @@ function printResultSet(&$rowset, $i)
 try
 {
 	require("../connection.php");
-	$sql="SELECT Scrap_ID,Name,Purchase_rate,status,image from scrap";
+	$sql="SELECT Scrap_ID,Name,Purchase_rate,Unit,status,image from scrap";
 	$stmt = $pdo->query($sql); 
 	do
 	{
