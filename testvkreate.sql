@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 13, 2020 at 02:26 PM
+-- Generation Time: May 16, 2020 at 10:56 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -90,7 +90,13 @@ INSERT INTO `newpickup` (`Name`, `Mobile_No`, `HNo`, `Street`, `Locality`, `Exch
 ('anshul', '122312131', '44', 'sikar', 'sikar', 'plant', '2020-04-26', '11 to 12'),
 ('prafful', '1231342', '22', 'jhotwara', 'jaipur', 'plant', '2020-04-26', '12 to 13'),
 ('tyagi', '232313', '3', 'agra', 'agra', 'plant', '2020-04-28', '12 to 13'),
-('Mr. Paul', '1231234567', '55', 'ajmer', 'ajmer', 'plant', '2020-05-14', '13 to 14');
+('Mr. Paul', '1231234567', '55', 'ajmer', 'ajmer', 'plant', '2020-05-14', '13 to 14'),
+('suresh', '1231231231', '11', 'jaipur', 'amity', 'money', '2020-05-17', '12 to 13'),
+('abcx', '1616161616', '77', 'yu', 'yu', 'plant', '2020-05-15', '10 to 11'),
+('sanju', '1818181818', '11', 'jaipur', 'bahar nikal', 'money', '2020-05-16', '16 to 17'),
+('ramram', '1919191919', '112', 'jaipur', 'ajmer', 'money', '2020-05-15', '11 to 12'),
+('tom', '1717171705', '', '', '', '', '1970-01-01', ''),
+('tommy', '1716151413', '55', 'tom', 'derry', 'money', '2020-05-15', '11 to 12');
 
 -- --------------------------------------------------------
 
@@ -121,52 +127,22 @@ INSERT INTO `plans` (`id`, `name`, `cost`, `description`, `status`) VALUES
 --
 
 CREATE TABLE `plant` (
-  `Plant_ID` varchar(10) NOT NULL,
+  `Plant_ID` int(5) NOT NULL,
   `Name` varchar(35) NOT NULL,
-  `Season` varchar(10) NOT NULL,
-  `Ideal Area` varchar(15) NOT NULL,
+  `Location` varchar(15) NOT NULL,
   `Purchase_Price` int(5) NOT NULL,
-  `Sell_Price` int(5) NOT NULL
+  `Sell_Price` int(5) NOT NULL,
+  `image` varchar(200) NOT NULL,
+  `status` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `plant`
 --
 
-INSERT INTO `plant` (`Plant_ID`, `Name`, `Season`, `Ideal Area`, `Purchase_Price`, `Sell_Price`) VALUES
-('P101', 'Snake Plant', 'All', 'Indoor', 75, 200),
-('P102', 'Peace Lily', 'All', 'Indoor', 85, 210),
-('P103', 'Aloe Vera', 'All', 'Indoor', 75, 200),
-('P104', 'Lucky bamboo', 'All', 'Indoor', 75, 200),
-('P105', 'Ferns(Pteridophytes)', 'All', 'Indoor', 75, 200),
-('P106', 'Chinese Evergreen', 'All', 'Indoor', 75, 200),
-('P107', 'Grape Ivy', 'All', 'Indoor', 75, 200),
-('P108', 'Flamingo Flower', 'All', 'Indoor', 75, 200),
-('P109', 'Areca Palm', 'All', 'Indoor', 80, 220),
-('P110', 'Money Plant', 'All', 'Indoor', 80, 221),
-('P111', 'Warneck Dracaena', 'All', 'Indoor', 80, 222),
-('P112', 'Heart leaf philodendron', 'All', 'Indoor', 80, 223),
-('P113', 'Azalea(simsii)', 'All', 'Indoor', 80, 224),
-('P114', 'Green Spider Plant', 'All', 'Indoor', 80, 225),
-('P115', 'Gerbera Daisy', 'All', 'Indoor', 80, 226),
-('P116', 'Weeping fif', 'All', 'Indoor', 80, 227),
-('P117', 'Croton', 'All', 'Indoor', 80, 228),
-('P118', 'Indian Basil', 'All', 'Indoor', 80, 229),
-('P119', 'Lavender', 'All', 'Indoor', 80, 230),
-('P120', 'Rubber Plant', 'All', 'Indoor', 190, 350),
-('P121', 'Pothos', 'All', 'Indoor', 80, 220),
-('P122', 'Prayer Plant', 'All', 'Indoor', 90, 220),
-('P201', 'Palm Trees (Tall)', 'Humid', 'Outdoor', 40, 180),
-('P202', 'Bamboo Plant', 'Humid', 'Outdoor', 50, 180),
-('P203', 'Neem Tree', 'Humid', 'Outdoor', 40, 180),
-('P204', 'Ficus Benjamina Plant', 'Humid', 'Outdoor', 50, 180),
-('P205', 'Sheesham Plant', 'Humid', 'Outdoor', 40, 180),
-('P206', 'Guvava Plant', 'Humid', 'Outdoor', 75, 180),
-('P207', 'Orange Tree', 'Humid', 'Outdoor', 85, 180),
-('P208', 'Papaya', 'Humid', 'Outdoor', 75, 180),
-('P209', 'Geranium', 'Humid', 'Outdoor', 85, 180),
-('P210', 'Pipal', 'Humid', 'Outdoor', 75, 180),
-('P211', 'Rose', 'Humid', 'Outdoor', 85, 180);
+INSERT INTO `plant` (`Plant_ID`, `Name`, `Location`, `Purchase_Price`, `Sell_Price`, `image`, `status`) VALUES
+(3, 'tulsi', 'indoor', 100, 150, 'admin.png', 1),
+(5, 'neem', 'outdoor', 20, 70, 'pexels-photo-1002703.jpeg', 1);
 
 -- --------------------------------------------------------
 
@@ -191,14 +167,15 @@ CREATE TABLE `purchase` (
 --
 
 CREATE TABLE `scrap` (
-  `Scrap_ID` varchar(32) NOT NULL,
+  `Scrap_ID` int(5) NOT NULL,
   `Name` varchar(32) NOT NULL,
-  `REC/REU` varchar(10) NOT NULL,
   `PR_GOOD` float NOT NULL,
   `PR_MED` float NOT NULL,
   `PR_BAD` float NOT NULL,
   `Purchase_rate` float NOT NULL,
-  `Sell_rate` float NOT NULL
+  `Sell_rate` float NOT NULL,
+  `image` varchar(200) NOT NULL,
+  `status` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -263,7 +240,7 @@ CREATE TABLE `user_table` (
 --
 
 INSERT INTO `user_table` (`id`, `first_name`, `last_name`, `email`, `verifyemail`, `remember_tocken`, `password`, `status`) VALUES
-(1, 'rahul', 'singh', 'ramram@yopmail.com', NULL, NULL, 11111111, 1),
+(1, 'rahul', 'ahuja', 'ramram@yopmail.com', NULL, NULL, 11111111, 1),
 (2, 'singh', 'sabh', 'singhsabh1@yopmail.com', NULL, NULL, 11111111, 1),
 (3, 'Rounak', 'Sarda', 'ramram11@yopmail.com', NULL, NULL, 11111111, 1),
 (4, 'rahul', 'singh', 'hellorah@yopmail.com', NULL, '62615226374cea32133f1531743e2088', 12341234, 2),
@@ -365,6 +342,18 @@ ALTER TABLE `plans`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT for table `plant`
+--
+ALTER TABLE `plant`
+  MODIFY `Plant_ID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `scrap`
+--
+ALTER TABLE `scrap`
+  MODIFY `Scrap_ID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `user_table`
 --
 ALTER TABLE `user_table`
@@ -379,20 +368,6 @@ ALTER TABLE `user_table`
 --
 ALTER TABLE `address`
   ADD CONSTRAINT `RelUseradd` FOREIGN KEY (`User_ID`) REFERENCES `user` (`User_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `purchase`
---
-ALTER TABLE `purchase`
-  ADD CONSTRAINT `RelScrappur` FOREIGN KEY (`Scrap_ID`) REFERENCES `scrap` (`Scrap_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `RelUserpur` FOREIGN KEY (`User_ID`) REFERENCES `user` (`User_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `sell`
---
-ALTER TABLE `sell`
-  ADD CONSTRAINT `RelScrapsell` FOREIGN KEY (`Scrap_ID`) REFERENCES `scrap` (`Scrap_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `RelUsersell` FOREIGN KEY (`User_ID`) REFERENCES `user` (`User_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `sell_plant`
