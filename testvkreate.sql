@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 16, 2020 at 10:56 PM
+-- Generation Time: May 17, 2020 at 01:59 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -174,9 +174,18 @@ CREATE TABLE `scrap` (
   `PR_BAD` float NOT NULL,
   `Purchase_rate` float NOT NULL,
   `Sell_rate` float NOT NULL,
+  `Unit` varchar(15) NOT NULL,
   `image` varchar(200) NOT NULL,
   `status` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `scrap`
+--
+
+INSERT INTO `scrap` (`Scrap_ID`, `Name`, `PR_GOOD`, `PR_MED`, `PR_BAD`, `Purchase_rate`, `Sell_rate`, `Unit`, `image`, `status`) VALUES
+(5, 'Newspaper', 1, 0.8, 0.5, 12, 20, 'per kg', '0 WHh3CpEY7l9a67kB.jpg', 1),
+(6, 'Magazines', 1, 0.8, 0.5, 14, 22, 'per kg', 'magazine-cover-flyer-template-2526f94e685554a3b90aabf07d713f27_screen.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -351,7 +360,7 @@ ALTER TABLE `plant`
 -- AUTO_INCREMENT for table `scrap`
 --
 ALTER TABLE `scrap`
-  MODIFY `Scrap_ID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `Scrap_ID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `user_table`
