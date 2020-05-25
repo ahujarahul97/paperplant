@@ -60,7 +60,7 @@ require("head.php");
     <div class="w-100"></div>
     <hr />
 	<div class="col"><a href="#" style="text-decoration:none"><img src="Images/newspaper2.png" style="width:50%"><br>Buy scrap</a></div>
-    <div class="col"><a href="#" style="text-decoration:none"><img src="Images/plant.png" style="width: 50%"><br>Buy plants</a></div>
+    <div class="col"><a href="plants.php" style="text-decoration:none"><img src="Images/plant.png" style="width: 50%"><br>Buy plants</a></div>
   </div>
 </div>
         <!--end of container-->

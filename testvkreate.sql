@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 17, 2020 at 01:59 PM
+-- Generation Time: May 25, 2020 at 11:10 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -48,6 +48,18 @@ CREATE TABLE `admin` (
   `Admin_ID` varchar(32) NOT NULL,
   `Name` varchar(32) NOT NULL,
   `Password` varchar(32) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cart`
+--
+
+CREATE TABLE `cart` (
+  `email` varchar(50) NOT NULL,
+  `Plant_ID` int(5) NOT NULL,
+  `Qty` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -147,6 +159,25 @@ INSERT INTO `plant` (`Plant_ID`, `Name`, `Location`, `Purchase_Price`, `Sell_Pri
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `plant_order`
+--
+
+CREATE TABLE `plant_order` (
+  `Order_ID` int(5) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `Total` int(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `plant_order`
+--
+
+INSERT INTO `plant_order` (`Order_ID`, `email`, `Total`) VALUES
+(2, 'rahulbro@yopmail.com', 89);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `purchase`
 --
 
@@ -207,11 +238,20 @@ CREATE TABLE `sell` (
 --
 
 CREATE TABLE `sell_plant` (
-  `User_ID` varchar(32) NOT NULL,
-  `Plant_ID` varchar(32) NOT NULL,
-  `Quanitity` int(5) NOT NULL,
+  `Order_ID` int(5) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `Plant_ID` int(5) NOT NULL,
+  `Qty` int(3) NOT NULL,
   `Amount` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `sell_plant`
+--
+
+INSERT INTO `sell_plant` (`Order_ID`, `email`, `Plant_ID`, `Qty`, `Amount`) VALUES
+(2, 'rahulbro@yopmail.com', 3, 2, 300),
+(2, 'rahulbro@yopmail.com', 5, 1, 70);
 
 -- --------------------------------------------------------
 
@@ -291,6 +331,12 @@ ALTER TABLE `admin`
   ADD PRIMARY KEY (`Admin_ID`);
 
 --
+-- Indexes for table `cart`
+--
+ALTER TABLE `cart`
+  ADD KEY `plantid` (`Plant_ID`);
+
+--
 -- Indexes for table `plans`
 --
 ALTER TABLE `plans`
@@ -301,6 +347,12 @@ ALTER TABLE `plans`
 --
 ALTER TABLE `plant`
   ADD PRIMARY KEY (`Plant_ID`);
+
+--
+-- Indexes for table `plant_order`
+--
+ALTER TABLE `plant_order`
+  ADD PRIMARY KEY (`Order_ID`);
 
 --
 -- Indexes for table `purchase`
@@ -326,7 +378,8 @@ ALTER TABLE `sell`
 -- Indexes for table `sell_plant`
 --
 ALTER TABLE `sell_plant`
-  ADD KEY `Plant_sell` (`User_ID`);
+  ADD KEY `relorder` (`Order_ID`),
+  ADD KEY `relplant` (`Plant_ID`);
 
 --
 -- Indexes for table `user`
@@ -357,6 +410,12 @@ ALTER TABLE `plant`
   MODIFY `Plant_ID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT for table `plant_order`
+--
+ALTER TABLE `plant_order`
+  MODIFY `Order_ID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `scrap`
 --
 ALTER TABLE `scrap`
@@ -379,10 +438,17 @@ ALTER TABLE `address`
   ADD CONSTRAINT `RelUseradd` FOREIGN KEY (`User_ID`) REFERENCES `user` (`User_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `cart`
+--
+ALTER TABLE `cart`
+  ADD CONSTRAINT `plantid` FOREIGN KEY (`Plant_ID`) REFERENCES `plant` (`Plant_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `sell_plant`
 --
 ALTER TABLE `sell_plant`
-  ADD CONSTRAINT `Plant_sell` FOREIGN KEY (`User_ID`) REFERENCES `purchase` (`User_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `relorder` FOREIGN KEY (`Order_ID`) REFERENCES `plant_order` (`Order_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `relplant` FOREIGN KEY (`Plant_ID`) REFERENCES `plant` (`Plant_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

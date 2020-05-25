@@ -32,7 +32,14 @@
                     <li class="nav-item"> <a class="nav-link js-scroll-trigger" href="scrap.php">Price List</a> </li>
 					<li class="nav-item"> <a class="nav-link js-scroll-trigger" href="sell.php">Schedule Pickup</a> </li>
                   <!--  <li class="nav-item"> <a class="nav-link js-scroll-trigger" href="#signup">Sign up</a> </li> -->
-                </ul>
+					<?php
+					
+						if(isset($_SESSION) && !empty($_SESSION["email"]))
+						{
+							echo "<li class=\"nav-item\"> <a class=\"nav-link js-scroll-trigger\" href=#><img src=\"images/cart.jpg\" height=\"30\" width=\"30\"> Cart</a> </li>";
+						}
+					?>
+				</ul>
             </div> 
                     <?php
 
@@ -56,7 +63,7 @@
                     <a class="dropdown-item" href="#">Subscription</a>
                     <a class="dropdown-item" href="logout.php" onclick="index" > Logout</a>
 
-                    <script type="text/javascript">
+					<script type="text/javascript">
 
                         
                     </script>

@@ -1,12 +1,8 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>Scrap Price</title>
-    <!-- Bootstrap Core CSS -->
+<title>PaperPlant</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap Core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom Fonts -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -16,7 +12,6 @@
     <link href="css/style.min.css" rel="stylesheet">
     <link href="css/custom.css" rel="stylesheet">
 	<link rel="stylesheet" href="css/mycss.css">
-</head>
 <?php
 session_start();
 require("head.php");
@@ -47,7 +42,7 @@ function printResultSet(&$rowset, $i)
        {    
             if($count==1)
             {
-                echo "<div class=\"mt-4\"><img src='admin/scrapimage/".$col."' height=\"200\" width=\"200\"></div>";
+                echo "<div class=\"mt-4\"><img src='admin/plantimage/".$col."' height=\"200\" width=\"200\"></div>";
                 $count++;
 				continue;
             }
@@ -60,14 +55,14 @@ function printResultSet(&$rowset, $i)
             }
             if($count==3)
             {
-                echo "<h3><b>Rs. ".$col."</b></h6>"; 
+                echo "<h3><b>Rs. ".$col." per plant</b></h6>"; 
             // echo "<a class=\"btn btn-outline-primary\" href=\"#\">Start Free Trial</a>";
                 $count++;
 				continue;
             }
 			if($count==4)
             {
-                echo "<p class=\"mb-3\">".$col."</p></div></div></div>"; 
+                echo "<p class=\"mb-3\">".$col." plant</p></div></div></div>"; 
             // echo "<a class=\"btn btn-outline-primary\" href=\"#\">Start Free Trial</a>";
                 continue;
             }
@@ -82,7 +77,7 @@ try
 {
   //  $i=0;
     require("connection.php");
-    $sql="SELECT image, Name, Purchase_rate, Unit from scrap where status=1";
+    $sql="SELECT image, Name, Sell_Price, Location from plant where status=1";
     $stmt = $pdo->query($sql); 
 
     do
@@ -142,17 +137,22 @@ catch(Exception $e)
     <div style=" background-color:#dd4b39; color:white ;font-size:14px;">
         <div style="text-align:center;">© - Shiv Technologies</div>
         </div>
- <!-- Footer -->
-    <footer class="footer text-center">
-        <div class="container"> </div>
-    </footer>
-    <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- Plugin JavaScript -->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-    <!-- Custom scripts for this template -->
-    <script src="js/style.min.js"></script>
 </body>
-
 </html>
+
+
+if($count==3)
+            {
+                if(isset($_SESSION['email']))
+                {
+                echo "<a class=\"btn btn-outline-primary\" href=\"planinfo.php?id=".$col."\">Sell</a>";
+                // echo "<a class=\"btn btn-outline-primary\" href=\"planinfo.php?id=".$col."\">Details</a>";
+                }
+                if(!isset($_SESSION['email']))
+                {
+                echo "<a class=\"btn btn-outline-primary\" href=\"login/index.php\">Sell</a>";  
+                }
+                $count++;
+                //$key=$col;
+                continue;
+            }

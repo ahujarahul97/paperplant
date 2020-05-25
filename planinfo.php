@@ -43,7 +43,7 @@ require_once 'config.php'
 require("head.php");
 
     require("connection.php");
-    $sql="SELECT name,cost,id,description from plans where id=".$_GET['id'];
+    $sql="SELECT name,cost,id,description from plans where id=2";
     $res = $pdo->query($sql);
     $row = $res->fetch();
 
@@ -61,7 +61,7 @@ require("head.php");
                     <?php
                     if (isset($_SESSION['email']))
                     {
-                        // echo "<p><a href=\"login/index.php\" class=\"btn btn-lg btn-gradient\" >Pay for Subscription!</a></p>";
+                        echo "<p><a href=\"login/index.php\" class=\"btn btn-lg btn-gradient\" >Pay for Subscription!</a></p>";
                         ?>
 <form action="payment.php" method="POST">
 <script

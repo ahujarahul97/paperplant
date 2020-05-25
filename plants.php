@@ -24,7 +24,26 @@ require("head.php");
               
 
 <?php
- $i=1;   
+ $i=1;  
+
+/*function addtocart($col)
+{
+	try
+	{
+		require("connection.php");
+		$sql="SELECT Sell_Price FROM plant WHERE Plant_ID=".(int)$col;
+		$res = $pdo->query($sql);
+		$row = $res->fetch();
+		$sql1="INSERT INTO cart(email, Plant_ID, Qty, Amount) VALUES ('".$_SESSION['email']."', ".(int)$col.", 1, '".$row['Sell_Price']."')";
+		$stmt= $pdo->prepare($sql1);
+		$stmt->execute();
+	}
+	catch(Exception $e)
+	{
+		echo $e;
+	}
+}*/
+ 
 
 function printResultSet(&$rowset, $i)
 {  
@@ -42,35 +61,44 @@ function printResultSet(&$rowset, $i)
        {    
             if($count==1)
             {
+                echo "<div class=\"mt-4\"><img src='admin/plantimage/".$col."' height=\"200\" width=\"200\"></div>";
+                $count++;
+				continue;
+            }
+			
+			if($count==2)
+            {
                 echo "<p class=\"mb-3\">".$col."</p>";
                 $count++;
                 continue;
             }
-            if($count==2)
-            {
-                echo "<h3 class=\"display-3 font-weight-bold\">Rs. ".$col."</h3></div>"; 
-                $count++;
-            // echo "<a class=\"btn btn-outline-primary\" href=\"#\">Start Free Trial</a>";
-                continue;
-            }
             if($count==3)
+            {
+                echo "<h3><b>Rs. ".$col." per plant</b></h6>"; 
+            // echo "<a class=\"btn btn-outline-primary\" href=\"#\">Start Free Trial</a>";
+                $count++;
+				continue;
+            }
+			if($count==4)
+            {
+                echo "<p class=\"mb-3\">".$col." plant</p>"; 
+            // echo "<a class=\"btn btn-outline-primary\" href=\"#\">Start Free Trial</a>";
+                $count++;
+				continue;
+            }
+            if($count==5)
             {
                 if(isset($_SESSION['email']))
                 {
-                echo "<a class=\"btn btn-outline-primary\" href=\"planinfo.php?id=".$col."\">Sell</a>";
+                echo "<button class=\"btn btn-outline-primary\" id=\"cart".$col."\" value=\"Add to cart\" onclick=\"tempsave(".$col.")\">Add to cart</button>";
                 // echo "<a class=\"btn btn-outline-primary\" href=\"planinfo.php?id=".$col."\">Details</a>";
+				echo "<button class=\"btn btn-outline-primary\" id=\"go".$col."\" href=\"cart.php\" style=\"display:none\" onclick=\"senddata()\">Go to cart</button></div></div></div>";
                 }
                 if(!isset($_SESSION['email']))
                 {
-                echo "<a class=\"btn btn-outline-primary\" href=\"login/index.php\">Sell</a>";  
+                echo "<a class=\"btn btn-outline-primary\" href=\"login/index.php\">Add to cart</a></div></div></div>";  
                 }
-                $count++;
                 //$key=$col;
-                continue;
-            }
-            if($count==4)
-            {
-                echo "<div class=\"mt-4\"><p class=\"\">".$col."</p></div></div></div>";
                 continue;
             }
        }
@@ -79,11 +107,12 @@ function printResultSet(&$rowset, $i)
     }
 }
 
+
 try
 {
   //  $i=0;
     require("connection.php");
-    $sql="SELECT name,cost,id,description from plans where status=1";
+    $sql="SELECT image, Name, Sell_Price, Location, Plant_ID from plant where status=1";
     $stmt = $pdo->query($sql); 
 
     do
@@ -99,8 +128,8 @@ try
 
     }
     while ($stmt->nextRowset());
-
-}   
+	
+}
 catch(Exception $e)
 {
     echo $e;
@@ -112,6 +141,26 @@ catch(Exception $e)
             </div>
         </div>
     </div>
+	
+	<script>
+	
+	var plantid = [];
+	
+	function tempsave(id)
+	{
+		//alert(id);
+		var len = plantid.push(id);
+		alert(plantid);
+		var x= document.getElementById("cart"+id);
+			x.style.display="none";
+		var y= document.getElementById("go"+id);
+			y.style.display="block";
+	}
+	function senddata()
+	{	
+		window.location.href = "cart.php?sendid=" + plantid;
+	}
+</script>		
 	 <!-- Footer -->
     <footer id="footer">
         <div class="pp-row pp-black">
@@ -143,5 +192,17 @@ catch(Exception $e)
     <div style=" background-color:#dd4b39; color:white ;font-size:14px;">
         <div style="text-align:center;">© - Shiv Technologies</div>
         </div>
+ <!-- Footer -->
+    <footer class="footer text-center">
+        <div class="container"> </div>
+    </footer>
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Custom scripts for this template -->
+    <script src="js/style.min.js"></script>
 </body>
+
 </html>

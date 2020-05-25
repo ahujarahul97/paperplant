@@ -173,5 +173,17 @@ input[type=number] {
     <div style=" background-color:#dd4b39; color:white ;font-size:14px;">
         <div style="text-align:center;">© - Shiv Technologies</div>
         </div>
+ <!-- Footer -->
+    <footer class="footer text-center">
+        <div class="container"> </div>
+    </footer>
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Custom scripts for this template -->
+    <script src="js/style.min.js"></script>
 </body>
+
 </html>
