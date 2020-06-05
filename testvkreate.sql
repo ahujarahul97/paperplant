@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 25, 2020 at 11:10 AM
+-- Generation Time: Jun 05, 2020 at 08:59 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -21,22 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `testvkreate`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `address`
---
-
-CREATE TABLE `address` (
-  `User_ID` varchar(32) NOT NULL,
-  `H.NO.` varchar(10) NOT NULL,
-  `Street` varchar(20) NOT NULL,
-  `Locality` varchar(20) NOT NULL,
-  `Pin Code` int(6) NOT NULL,
-  `City` varchar(15) NOT NULL,
-  `State` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -61,6 +45,25 @@ CREATE TABLE `cart` (
   `Plant_ID` int(5) NOT NULL,
   `Qty` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`email`, `Plant_ID`, `Qty`) VALUES
+('rahulbro@yopmail.com', 5, 1),
+('rahulbro@yopmail.com', 3, 1),
+('rahulbro@yopmail.com', 5, 1),
+('rahulbro@yopmail.com', 5, 1),
+('rahulbro@yopmail.com', 5, 1),
+('rahulbro@yopmail.com', 5, 1),
+('rahulbro@yopmail.com', 5, 1),
+('rahulbro@yopmail.com', 5, 1),
+('rahulbro@yopmail.com', 5, 1),
+('rahulbro@yopmail.com', 5, 1),
+('rahulbro@yopmail.com', 5, 1),
+('rahulbro@yopmail.com', 5, 1),
+('rahulbro@yopmail.com', 5, 1);
 
 -- --------------------------------------------------------
 
@@ -113,28 +116,6 @@ INSERT INTO `newpickup` (`Name`, `Mobile_No`, `HNo`, `Street`, `Locality`, `Exch
 -- --------------------------------------------------------
 
 --
--- Table structure for table `plans`
---
-
-CREATE TABLE `plans` (
-  `id` int(11) NOT NULL,
-  `name` varchar(30) NOT NULL,
-  `cost` int(30) NOT NULL,
-  `description` text NOT NULL,
-  `status` int(1) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `plans`
---
-
-INSERT INTO `plans` (`id`, `name`, `cost`, `description`, `status`) VALUES
-(1, 'scrap 1', 20, 'Google SMTP Server – How to Send Emails for Free. Outgoing Mail (SMTP) Server: smtp.gmail.com. Use Authentication: Yes. Use Secure Connection: Yes (TLS or SSL depending on your mail client/website SMTP plugin) Username: your Gmail account (e.g. user@gmail.com) Password: your Gmail password. Port: 465 (SSL required) or ...', 1),
-(2, 'scarp 2', 30, 'Apollo 11 was the spaceflight that first landed humans on the Moon. Commander Neil Armstrong and lunar module pilot Buzz Aldrin formed the American crew that landed the Apollo Lunar Module Eagle on July 20, 1969', 1);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `plant`
 --
 
@@ -173,7 +154,8 @@ CREATE TABLE `plant_order` (
 --
 
 INSERT INTO `plant_order` (`Order_ID`, `email`, `Total`) VALUES
-(2, 'rahulbro@yopmail.com', 89);
+(2, 'rahulbro@yopmail.com', 89),
+(3, 'rahulbro@yopmail.com', 246);
 
 -- --------------------------------------------------------
 
@@ -251,21 +233,9 @@ CREATE TABLE `sell_plant` (
 
 INSERT INTO `sell_plant` (`Order_ID`, `email`, `Plant_ID`, `Qty`, `Amount`) VALUES
 (2, 'rahulbro@yopmail.com', 3, 2, 300),
+(2, 'rahulbro@yopmail.com', 5, 1, 70),
+(2, 'rahulbro@yopmail.com', 3, 0, 0),
 (2, 'rahulbro@yopmail.com', 5, 1, 70);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `user`
---
-
-CREATE TABLE `user` (
-  `User_ID` varchar(32) NOT NULL,
-  `Name` varchar(32) NOT NULL,
-  `Password` varchar(32) NOT NULL,
-  `Mobile No.` int(10) NOT NULL,
-  `User_type` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -319,12 +289,6 @@ INSERT INTO `user_type` (`id`, `type`) VALUES
 --
 
 --
--- Indexes for table `address`
---
-ALTER TABLE `address`
-  ADD KEY `RelUseradd` (`User_ID`);
-
---
 -- Indexes for table `admin`
 --
 ALTER TABLE `admin`
@@ -335,12 +299,6 @@ ALTER TABLE `admin`
 --
 ALTER TABLE `cart`
   ADD KEY `plantid` (`Plant_ID`);
-
---
--- Indexes for table `plans`
---
-ALTER TABLE `plans`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `plant`
@@ -382,12 +340,6 @@ ALTER TABLE `sell_plant`
   ADD KEY `relplant` (`Plant_ID`);
 
 --
--- Indexes for table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`User_ID`);
-
---
 -- Indexes for table `user_table`
 --
 ALTER TABLE `user_table`
@@ -396,12 +348,6 @@ ALTER TABLE `user_table`
 --
 -- AUTO_INCREMENT for dumped tables
 --
-
---
--- AUTO_INCREMENT for table `plans`
---
-ALTER TABLE `plans`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `plant`
@@ -413,7 +359,7 @@ ALTER TABLE `plant`
 -- AUTO_INCREMENT for table `plant_order`
 --
 ALTER TABLE `plant_order`
-  MODIFY `Order_ID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `Order_ID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `scrap`
@@ -430,12 +376,6 @@ ALTER TABLE `user_table`
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `address`
---
-ALTER TABLE `address`
-  ADD CONSTRAINT `RelUseradd` FOREIGN KEY (`User_ID`) REFERENCES `user` (`User_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `cart`

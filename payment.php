@@ -5,6 +5,7 @@ $btn.on('click', function(){
   razorpay.on('payment.success', function(resp) {
    
    alert("hello");
+   header("Location: cartaction.php");
   razorpay.on('payment.error', function(resp){alert(resp.error.description)}); 
 
 })
