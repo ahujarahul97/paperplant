@@ -83,6 +83,19 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                 <!-- </a> -->
                 
               </li>
+			  
+			  <li class="treeview">
+               <!--  <a href="users.php"> -->
+                <a href="#">
+                <i class="fa fa-table"></i> <span>Pending</span>
+                <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                 <ul class="treeview-menu">
+                  <li><a href="pending.php"><i class="fa fa-angle-right"></i> Pending request</a></li>
+                </ul>
+                <!-- </a> -->
+                
+              </li>
               
                 <li class="treeview">
                 <a href="#">

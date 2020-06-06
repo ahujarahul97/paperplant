@@ -83,6 +83,18 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                 <!-- </a> -->
                 
               </li>
+			  <li class="treeview">
+               <!--  <a href="users.php"> -->
+                <a href="#">
+                <i class="fa fa-table"></i> <span>Pending</span>
+                <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                 <ul class="treeview-menu">
+                  <li><a href="pending.php"><i class="fa fa-angle-right"></i> Pending request</a></li>
+                </ul>
+                <!-- </a> -->
+                
+              </li>
               
                 <li class="treeview">
                 <a href="#">
@@ -182,7 +194,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                                 <div class="form-group">
                                     <label for="focusedinput" class="col-sm-2 control-label">Scrap Name</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control1" id="focusedinput" name="scrapname" placeholder="Name of Plant">
+                                        <input type="text" class="form-control1" id="focusedinput" name="scrapname" placeholder="Name of Scrap">
                                     </div>
                                     <!--<div class="col-sm-2">
                                         <p class="help-block">Your help text!</p>

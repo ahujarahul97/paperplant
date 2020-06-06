@@ -1,13 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>Home</title>
-    <!-- Bootstrap Core CSS -->
+<html>
+<title>PaperPlant</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap Core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom Fonts -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -17,56 +12,110 @@
     <link href="css/style.min.css" rel="stylesheet">
     <link href="css/custom.css" rel="stylesheet">
 	<link rel="stylesheet" href="css/mycss.css">
-</head>
-
 <?php
 session_start();
 require("head.php");
 ?>
-    <!-- Carousel -->
-	<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img class="d-block w-100" src="images/pic1.jpg" alt="First slide">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="images/pic2.jpg" alt="Second slide">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="images/pic3.jpg" alt="Third slide">
-    </div>
-  </div>
-  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
+<style>
+input, select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
 
-    <div class="pp-center">
-<p style="font-size:2.5vw">Our goal</p>
-<p style="font-size:1.5vw"> our goal is to centralise the scattered and unmanaged sector of scrap handling</p>
-</div>	
+input[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+</style>
+<script>
+	
+	Date.prototype.addDays = function(days) {
+    var date = new Date(this.valueOf());
+    date.setDate(date.getDate() + days);
+    return date;
+	}
+
+	function adddate()
+	{
+		var list= document.getElementById('date');	
+		var i;
+		for(i=0;i<5;i++)
+		{
+			var today= new Date();
+			today=today.addDays(i);
+			var dd=String(today.getDate()).padStart(2,'0');	
+			var mm=String(today.getMonth()+1).padStart(2,'0');
+			var yyyy= today.getFullYear();
+			today=dd+'/'+mm+'/'+yyyy;
+			var option= document.createElement("option");
+			option.text= today;
+			option.value= today;
+			list.add(option);
+		}
+		
+	}
+	function addtime()
+	{
+		var list= document.getElementById('time');
+		var b=10,a=11;
+		while(a<=18)
+		{
+			
+			var option= document.createElement("option");
+			var time= b+' to '+a;
+			
+			option.text= time;
+			option.value= time;
+			list.add(option);
+			a++;
+			b++;
+		}
+	}
+	function ClearForm()
+	{
+		document.getElementById("sell").reset();
+	}
+</script>
+<body onload="adddate(), addtime(), ClearForm()">
 <hr />
+<p class="text-center"style="font-size:2.5vw">Fill details</p>
+<div style="margin:5%;border-radius: 5px;background-color: #f2f2f2;padding: 20px; ">
+  <form id="sell" action="factoryaction.php" method="post">
+    <label>Company Name</label>
+    <input type="text" id="name" name="name" placeholder="Your name..">
 
-    <section class="text-center w-90 border-bottom border-left border-right">
-        <div class="container">
-  <div class="row" style="font-size:2vw;">
-    <div class="col"><a href="sell.php" style="text-decoration:none"><img src="Images/newspaper.png" alt="sell" style="width: 50%"><br>Sell scrap</a></div>
-    <div class="col"><a href="donate.php" style="text-decoration:none"><img src="Images/magazines.png" style="width: 50%"><br>Donate scrap</a></div>
-    <div class="w-100"></div>
-    <hr />
-	<div class="col"><a href="factory.php" style="text-decoration:none"><img src="Images/newspaper2.png" style="width:50%"><br>Buy scrap</a></div>
-    <div class="col"><a href="plants.php" style="text-decoration:none"><img src="Images/plant.png" style="width: 50%"><br>Buy plants</a></div>
-  </div>
+    <label>Contact No.</label>
+    <input type="number" placeholder="Enter Mobile No." id="num" name="num" maxlength="10" required>
+	
+	<input type="submit" value="Submit">
+  </form>
 </div>
-        <!--end of container-->
-    </section>
-    <hr />
-    <!-- </section>  -->
     <!-- Footer -->
     <footer id="footer">
         <div class="pp-row pp-black">
@@ -98,7 +147,7 @@ require("head.php");
     <div style=" background-color:#dd4b39; color:white ;font-size:14px;">
         <div style="text-align:center;">© - Shiv Technologies</div>
         </div>
-    <!-- Footer -->
+ <!-- Footer -->
     <footer class="footer text-center">
         <div class="container"> </div>
     </footer>

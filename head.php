@@ -59,8 +59,6 @@
                     <!--<button class="dropbtn">Account </button>-->
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <!--        <a href="#">Profile</a> -->
-                    <a class="dropdown-item" href="#" >Profile</a>
-                    <a class="dropdown-item" href="#">Subscription</a>
                     <a class="dropdown-item" href="logout.php" onclick="index" > Logout</a>
 
 					<script type="text/javascript">

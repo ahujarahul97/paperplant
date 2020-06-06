@@ -10,7 +10,7 @@ die;
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Plants</title>
+<title>Users</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Glance Design Dashboard Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -59,7 +59,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             </button>
-            <h1><a class="navbar-brand" href="../index.php"><span class="fa fa-area-chart"></span> PAPERPLANT<span class="dashboard_text">Be Eco-Friendly</span></a></h1>
+            <h1><a class="navbar-brand" href="../index.php"><span class="fa fa-area-chart"></span> PaperPlant<span class="dashboard_text">Be Eco-Friendly</span></a></h1>
           </div>
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="sidebar-menu">
@@ -81,9 +81,10 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                   
                 </ul>
                 <!-- </a> -->
+				
                 
               </li>
-              <li class="treeview">
+			  <li class="treeview">
                <!--  <a href="users.php"> -->
                 <a href="#">
                 <i class="fa fa-table"></i> <span>Pending</span>
@@ -95,6 +96,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                 <!-- </a> -->
                 
               </li>
+              
                 <li class="treeview">
                 <a href="#">
                 <i class="fa fa-table"></i> <span>Plants</span>
@@ -182,37 +184,81 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 			<div class="clearfix"> </div>	
 		</div>
 		<!-- //header-ends -->
+
+
+
+
+
+<!--  -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		<!-- main content start-->
 		<div id="page-wrapper">
 			<div class="main-page">
 				<div class="tables">
-					
-
-
-					<div class="bs-example widget-shadow" data-example-id="hoverable-table"> 
-						<h4>Plans:</h4>
-						
-						<table class="table table-hover"> 
-						<thead> 
-						<tr> 
-							<th>id</th> 
-							<th>Name</th> 
-							<th>Cost</th> 
-							<th>Status</th> 
-							<th>Type</th>
-							<th>Image</th>
-							<th>Actions</th>
-						</tr>
-						</thead> 
-						<tbody> 
-						
-
+					<h2 class="title1">All Users</h2>
+					<div class="panel-body widget-shadow">
+						<h4>Basic Table:</h4>
+						<table class="table">
+							<thead>
+								<tr>
+								  <th>Name</th>
+								  <th>Mobile No.</th>
+								  <th>H.No.</th>
+								  <th>Street</th>
+								  <th>Localiity</th>
+								  <th>Exchange</th>
+								  <th>Date</th>
+								  <th>Slot</th>
+								</tr>
+							</thead>
+							<tbody>
+<!--
+<script type='text/javascript'>
+	
+	function check()
+	{
+	alert('hello');
+	a=confirm("Are you sure you want to delete it ? If no then cancel .");
+	if (a==true)
+	{
+	<?php //header("location:deleteusersaction.php?id=".$_SESSION['id']); ?>
+	}
+	}
+</script>-->
 						<?php
 						//session_start();
 $i=1;
 
 function printResultSet(&$rowset, $i)
 {  $j=1;
+	
     foreach ($rowset as $row) 
     {	
 
@@ -220,39 +266,32 @@ function printResultSet(&$rowset, $i)
     	
     	echo "<tr>";
     	$count=1;
-		$x=0;
        foreach ($row as $col) 
        {	
-       		if($count==1)
+       		if($count==2)
        		{
        		//echo "<input type='hidden' name='action".$j."' value='".$col."'>";
-       		$_SESSION['id']=$col;	
+       		$_SESSION['num']=$col;	
        		}
-			if($x==5)
-			{
-				echo "<td><img src='plantimage/".$col."' height=\"50\" width=\"50\"></td>";
-			}
-			else
-			{
             echo "<td>".$col."</td>";
-			}
-			$x++;
            $count++;
        }
-	   echo "<td width=\"15%\"><a href=\"editplants.php?id=".$_SESSION['id']."\"><input type='button' value='Edit' class='btn btn-primary'></a> <a onClick=\"javascript: return confirm('Please confirm deletion');\" href='deleteplantsaction.php?id=".$_SESSION['id']."'><input type='button' value='Delete' class='btn btn-primary'></a></td></tr>";
-        echo "</form>";
-        $j++;
+       echo "<td><a onClick=\"javascript: return confirm('Please confirm completion');\" href='completepickaction.php?num=".$_SESSION['num']."'><input type='button' value='Confirm' class='btn btn-primary'></a></td></tr>";
+       echo "</form>";
+       $j++;
     }
 }
 
 try
 {
 	require("../connection.php");
-	$sql="SELECT Plant_ID,Name,Purchase_Price,status,Location,image from plant";
+	$sql="SELECT Name, Mobile_No, HNo, Street, Locality, Exchange, Date, Slot from newpickup";
 	$stmt = $pdo->query($sql); 
+
 	do
 	{
     	$rowset = $stmt->fetchAll(PDO::FETCH_NUM);
+    	
     	if ($rowset) 
     	{
     	printResultSet($rowset, $i);
@@ -266,16 +305,57 @@ catch(Exception $e)
 	echo $e;
 }
 ?>
-						
-						</tbody> 
+
+
+
+
+
+
+								<!-- <tr>
+								  <th scope="row">1</th>
+								  <td>Mark</td>
+								  <td>Otto</td>
+								  <td>@mdo</td>
+								</tr> -->
+								<!-- <tr>
+								  <th scope="row">2</th>
+								  <td>Jacob</td>
+								  <td>Thornton</td>
+								  <td>@fat</td>
+								</tr>
+								<tr>
+								  <th scope="row">3</th>
+								  <td>Larry</td>
+								  <td>the Bird</td>
+								  <td>@twitter</td> -->
+								<!-- </tr> -->
+							</tbody>
 						</table>
-						
 					</div>
-					
+					<!-- <div class="bs-example widget-shadow" data-example-id="bordered-table"> 
+						<h4>Bordered Basic Table:</h4>
+						<table class="table table-bordered"> <thead> <tr> <th>#</th> <th>First Name</th> <th>Last Name</th> <th>Username</th> </tr> </thead> <tbody> <tr> <th scope="row">1</th> <td>Mark</td> <td>Otto</td> <td>@mdo</td> </tr> <tr> <th scope="row">2</th> <td>Jacob</td> <td>Thornton</td> <td>@fat</td> </tr> <tr> <th scope="row">3</th> <td>Larry</td> <td>the Bird</td> <td>@twitter</td> </tr> </tbody> </table>
+					</div>
+					<div class="bs-example widget-shadow" data-example-id="hoverable-table"> 
+						<h4>Hover Rows Table:</h4>
+						<table class="table table-hover"> <thead> <tr> <th>#</th> <th>First Name</th> <th>Last Name</th> <th>Username</th> </tr> </thead> <tbody> <tr> <th scope="row">1</th> <td>Mark</td> <td>Otto</td> <td>@mdo</td> </tr> <tr> <th scope="row">2</th> <td>Jacob</td> <td>Thornton</td> <td>@fat</td> </tr> <tr> <th scope="row">3</th> <td>Larry</td> <td>the Bird</td> <td>@twitter</td> </tr> </tbody> </table>
+					</div>
+					<div class="bs-example widget-shadow" data-example-id="contextual-table"> 
+						<h4>Colored Rows Table:</h4>
+						<table class="table"> <thead> <tr> <th>#</th> <th>Column heading</th> <th>Column heading</th> <th>Column heading</th> </tr> </thead> <tbody> <tr class="active"> <th scope="row">1</th> <td>Column content</td> <td>Column content</td> <td>Column content</td> </tr> <tr> <th scope="row">2</th> <td>Column content</td> <td>Column content</td> <td>Column content</td> </tr> <tr class="success"> <th scope="row">3</th> <td>Column content</td> <td>Column content</td> <td>Column content</td> </tr> <tr> <th scope="row">4</th> <td>Column content</td> <td>Column content</td> <td>Column content</td> </tr> <tr class="info"> <th scope="row">5</th> <td>Column content</td> <td>Column content</td> <td>Column content</td> </tr> <tr> <th scope="row">6</th> <td>Column content</td> <td>Column content</td> <td>Column content</td> </tr> <tr class="warning"> <th scope="row">7</th> <td>Column content</td> <td>Column content</td> <td>Column content</td> </tr> <tr> <th scope="row">8</th> <td>Column content</td> <td>Column content</td> <td>Column content</td> </tr> <tr class="danger"> <th scope="row">9</th> <td>Column content</td> <td>Column content</td> <td>Column content</td> </tr> </tbody> </table> 
+					</div>
+					<div class="table-responsive bs-example widget-shadow">
+						<h4>Responsive Table:</h4>
+						<table class="table table-bordered"> <thead> <tr> <th>#</th> <th>Table heading</th> <th>Table heading</th> <th>Table heading</th> <th>Table heading</th> <th>Table heading</th> <th>Table heading</th> </tr> </thead> <tbody> <tr> <th scope="row">1</th> <td>Table cell</td> <td>Table cell</td> <td>Table cell</td> <td>Table cell</td> <td>Table cell</td> <td>Table cell</td> </tr> <tr> <th scope="row">2</th> <td>Table cell</td> <td>Table cell</td> <td>Table cell</td> <td>Table cell</td> <td>Table cell</td> <td>Table cell</td> </tr> <tr> <th scope="row">3</th> <td>Table cell</td> <td>Table cell</td> <td>Table cell</td> <td>Table cell</td> <td>Table cell</td> <td>Table cell</td> </tr> </tbody> </table> 
+					</div> -->
 				</div>
 			</div>
 		</div>
-		
+		<!--footer-->
+		<!-- <div class="footer">
+		   <p>&copy; 2018 Glance Design Dashboard. All Rights Reserved | Design by <a href="https://w3layouts.com/" target="_blank">w3layouts</a></p>
+	   </div> -->
+        <!--//footer-->
 	</div>
 	
 	<!-- side nav js -->

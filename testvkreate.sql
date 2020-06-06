@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 05, 2020 at 08:59 PM
+-- Generation Time: Jun 06, 2020 at 11:08 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -25,18 +25,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
---
-
-CREATE TABLE `admin` (
-  `Admin_ID` varchar(32) NOT NULL,
-  `Name` varchar(32) NOT NULL,
-  `Password` varchar(32) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `cart`
 --
 
@@ -46,24 +34,25 @@ CREATE TABLE `cart` (
   `Qty` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `cart`
+-- Table structure for table `factory`
 --
 
-INSERT INTO `cart` (`email`, `Plant_ID`, `Qty`) VALUES
-('rahulbro@yopmail.com', 5, 1),
-('rahulbro@yopmail.com', 3, 1),
-('rahulbro@yopmail.com', 5, 1),
-('rahulbro@yopmail.com', 5, 1),
-('rahulbro@yopmail.com', 5, 1),
-('rahulbro@yopmail.com', 5, 1),
-('rahulbro@yopmail.com', 5, 1),
-('rahulbro@yopmail.com', 5, 1),
-('rahulbro@yopmail.com', 5, 1),
-('rahulbro@yopmail.com', 5, 1),
-('rahulbro@yopmail.com', 5, 1),
-('rahulbro@yopmail.com', 5, 1),
-('rahulbro@yopmail.com', 5, 1);
+CREATE TABLE `factory` (
+  `Company_name` varchar(50) NOT NULL,
+  `Contact_no` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `factory`
+--
+
+INSERT INTO `factory` (`Company_name`, `Contact_no`) VALUES
+('wonder cement', 1234123456),
+('Classmate', 1029384756),
+('natraj', 1928374655);
 
 -- --------------------------------------------------------
 
@@ -81,37 +70,6 @@ CREATE TABLE `newpickup` (
   `Date` date NOT NULL,
   `Slot` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `newpickup`
---
-
-INSERT INTO `newpickup` (`Name`, `Mobile_No`, `HNo`, `Street`, `Locality`, `Exchange`, `Date`, `Slot`) VALUES
-('rahul', '1234', '66', '', '', '', '0000-00-00', ''),
-('rahul12', '1234233', '66', 'shakti', 'nagar', '', '0000-00-00', '10 to 11'),
-('rahul12', '1234233', '66', 'shakti', 'nagar', '', '0000-00-00', '10 to 11'),
-('rahul12', '1234233', '66', 'shakti', 'nagar', '', '0000-00-00', '10 to 11'),
-('rahul12', '1234233', '66', 'shakti', 'nagar', 'plant', '0000-00-00', '10 to 11'),
-('rahul12', '1234233', '66', 'shakti', 'nagar', 'plant', '1970-01-01', '10 to 11'),
-('rahul12', '1234233', '66', 'shakti', 'nagar', 'plant', '1970-01-01', '10 to 11'),
-('rahul12', '1234233', '66', 'shakti', 'nagar', 'plant', '2020-04-25', '10 to 11'),
-('rahul12', '1234233', '66', 'shakti', 'nagar', 'plant', '2020-04-25', '10 to 11'),
-('', '4555455', 'rouna', '', '', '', '1970-01-01', ''),
-('rounak', '131213', '12', 'churu', 'tara', 'plant', '2020-04-25', '10 to 11'),
-('rounak', '131213', '12', 'churu', 'tara', 'plant', '2020-04-25', '10 to 11'),
-('rounak', '131213', '12', 'churu', 'tara', 'plant', '2020-04-25', '10 to 11'),
-('rounak', '131213', '12', 'churu', 'tara', 'plant', '2020-04-25', '10 to 11'),
-('paul', '239893', 'kjw', 'bjn', 'njn', 'money', '2020-04-26', '11 to 12'),
-('anshul', '122312131', '44', 'sikar', 'sikar', 'plant', '2020-04-26', '11 to 12'),
-('prafful', '1231342', '22', 'jhotwara', 'jaipur', 'plant', '2020-04-26', '12 to 13'),
-('tyagi', '232313', '3', 'agra', 'agra', 'plant', '2020-04-28', '12 to 13'),
-('Mr. Paul', '1231234567', '55', 'ajmer', 'ajmer', 'plant', '2020-05-14', '13 to 14'),
-('suresh', '1231231231', '11', 'jaipur', 'amity', 'money', '2020-05-17', '12 to 13'),
-('abcx', '1616161616', '77', 'yu', 'yu', 'plant', '2020-05-15', '10 to 11'),
-('sanju', '1818181818', '11', 'jaipur', 'bahar nikal', 'money', '2020-05-16', '16 to 17'),
-('ramram', '1919191919', '112', 'jaipur', 'ajmer', 'money', '2020-05-15', '11 to 12'),
-('tom', '1717171705', '', '', '', '', '1970-01-01', ''),
-('tommy', '1716151413', '55', 'tom', 'derry', 'money', '2020-05-15', '11 to 12');
 
 -- --------------------------------------------------------
 
@@ -134,8 +92,23 @@ CREATE TABLE `plant` (
 --
 
 INSERT INTO `plant` (`Plant_ID`, `Name`, `Location`, `Purchase_Price`, `Sell_Price`, `image`, `status`) VALUES
-(3, 'tulsi', 'indoor', 100, 150, 'admin.png', 1),
-(5, 'neem', 'outdoor', 20, 70, 'pexels-photo-1002703.jpeg', 1);
+(8, 'Snake Plant', 'indoor', 200, 250, 'nurserylive-sansevieria-trifasciata-snake-plant-var-laurentii-plant.jpg', 1),
+(9, 'Peace Lily', 'indoor', 85, 135, 'nurserylive-peace-lily-spathiphyllum-small4.jpg', 1),
+(10, 'Aloe Vera', 'indoor', 75, 125, 'Alovera plant.jpg', 1),
+(11, 'Lucky bamboo', 'indoor', 142, 192, 'Lucky bamboo.jpg', 1),
+(12, 'Ferns(Pteridophytes)', 'indoor', 85, 135, 'Ferns.jpg', 1),
+(13, 'Chinese Evergreen', 'indoor', 90, 140, 'Chinese Evergreen.jpg', 1),
+(14, 'Grape Ivy', 'indoor', 100, 150, 'Grape Ivy.jpg', 1),
+(15, 'Flamingo Flower', 'indoor', 100, 150, 'Flamingo Flower.jpg', 1),
+(16, 'Areca Palm', 'indoor', 150, 200, 'areca plam.jpg', 1),
+(17, 'Money Plant', 'indoor', 100, 150, 'Money Plant.jpg', 1),
+(18, 'Warneck Dracaena', 'indoor', 180, 230, 'Warneck  Dracaena.jpg', 1),
+(19, 'Heart leaf philodendron', 'indoor', 150, 200, 'Heart leaf.jpg', 1),
+(20, 'Green Spider Plant', 'indoor', 100, 150, 'Green Spider.jpg', 1),
+(21, 'Croton', 'indoor', 100, 150, 'croton-petra.jpg', 0),
+(22, 'Bamboo Plant ', 'outdoor', 120, 170, 'Bamboo Plant.jpg', 1),
+(23, 'Neem Tree', 'outdoor', 50, 100, 'neem-plant.jpg', 1),
+(24, 'Sheesham Plant', 'outdoor', 120, 170, 'Sheesham Plant.jpeg', 0);
 
 -- --------------------------------------------------------
 
@@ -156,22 +129,6 @@ CREATE TABLE `plant_order` (
 INSERT INTO `plant_order` (`Order_ID`, `email`, `Total`) VALUES
 (2, 'rahulbro@yopmail.com', 89),
 (3, 'rahulbro@yopmail.com', 246);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `purchase`
---
-
-CREATE TABLE `purchase` (
-  `User_ID` varchar(32) NOT NULL,
-  `Scrap_ID` varchar(32) NOT NULL,
-  `Quantity` int(5) NOT NULL,
-  `Quality` varchar(6) NOT NULL,
-  `Price` int(5) NOT NULL,
-  `Date` date NOT NULL,
-  `Plant_Money` varchar(5) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -197,20 +154,30 @@ CREATE TABLE `scrap` (
 --
 
 INSERT INTO `scrap` (`Scrap_ID`, `Name`, `PR_GOOD`, `PR_MED`, `PR_BAD`, `Purchase_rate`, `Sell_rate`, `Unit`, `image`, `status`) VALUES
-(5, 'Newspaper', 1, 0.8, 0.5, 12, 20, 'per kg', '0 WHh3CpEY7l9a67kB.jpg', 1),
-(6, 'Magazines', 1, 0.8, 0.5, 14, 22, 'per kg', 'magazine-cover-flyer-template-2526f94e685554a3b90aabf07d713f27_screen.jpg', 1);
+(8, 'Die Steel Scrap', 1, 0.8, 0.5, 22, 30, 'per kg', 'Die Steel Scrap.jpg', 1),
+(9, 'Alloy Steel Scrap ', 1, 0.8, 0.5, 190, 198, 'per kg', 'alloy-steel-scrap-500x500.jpg', 1),
+(10, 'Bronze Scrap ', 1, 0.8, 0.5, 440, 448, 'per kg', 'Bronze.jpg', 1),
+(11, 'Books ', 1, 0.8, 0.5, 10, 18, 'per kg', 'books.jpeg', 1),
+(12, 'Cartoon Box ', 1, 0.8, 0.5, 6, 14, 'per kg', 'Cartoon Box.jpg', 1),
+(13, 'Iron cans', 1, 0.8, 0.5, 22, 30, 'per kg', 'Cans Iron.jpg', 1),
+(14, 'Plastic ', 1, 0.8, 0.5, 7, 15, 'per kg', 'Plastic.jpg', 1),
+(15, 'Newspaper ', 1, 0.8, 0.5, 8, 16, 'per kg', 'newspaper.jpg', 1),
+(16, 'Oil box iron', 1, 0.8, 0.5, 15, 23, 'per piece', 'oil tin.jpg', 1),
+(17, 'copper', 1, 0.8, 0.5, 330, 338, 'per kg', 'copper.jpg', 1),
+(18, 'E-Waste', 1, 0.8, 0.5, 40, 48, 'per kg', 'E-Waste.jpg', 1),
+(19, 'Steel', 1, 0.8, 0.5, 33, 41, 'per kg', 'steel.jpg', 1),
+(20, 'Tin', 1, 0.8, 0.5, 10, 18, 'per kg', 'Tin.jpg', 0),
+(21, 'Inverter Battery', 1, 0.8, 0.5, 85, 93, 'per kg', 'Inverter Battery.jpg', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sell`
+-- Table structure for table `scrap_pick`
 --
 
-CREATE TABLE `sell` (
-  `User_ID` varchar(32) NOT NULL,
-  `Scrap_ID` varchar(32) NOT NULL,
-  `Quantity` int(5) NOT NULL,
-  `Price` int(10) NOT NULL
+CREATE TABLE `scrap_pick` (
+  `Name` varchar(25) NOT NULL,
+  `Mobile_No` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -226,16 +193,6 @@ CREATE TABLE `sell_plant` (
   `Qty` int(3) NOT NULL,
   `Amount` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `sell_plant`
---
-
-INSERT INTO `sell_plant` (`Order_ID`, `email`, `Plant_ID`, `Qty`, `Amount`) VALUES
-(2, 'rahulbro@yopmail.com', 3, 2, 300),
-(2, 'rahulbro@yopmail.com', 5, 1, 70),
-(2, 'rahulbro@yopmail.com', 3, 0, 0),
-(2, 'rahulbro@yopmail.com', 5, 1, 70);
 
 -- --------------------------------------------------------
 
@@ -289,12 +246,6 @@ INSERT INTO `user_type` (`id`, `type`) VALUES
 --
 
 --
--- Indexes for table `admin`
---
-ALTER TABLE `admin`
-  ADD PRIMARY KEY (`Admin_ID`);
-
---
 -- Indexes for table `cart`
 --
 ALTER TABLE `cart`
@@ -313,24 +264,10 @@ ALTER TABLE `plant_order`
   ADD PRIMARY KEY (`Order_ID`);
 
 --
--- Indexes for table `purchase`
---
-ALTER TABLE `purchase`
-  ADD KEY `RelScrappur` (`Scrap_ID`),
-  ADD KEY `RelUserpur` (`User_ID`);
-
---
 -- Indexes for table `scrap`
 --
 ALTER TABLE `scrap`
   ADD PRIMARY KEY (`Scrap_ID`);
-
---
--- Indexes for table `sell`
---
-ALTER TABLE `sell`
-  ADD KEY `RelUsersell` (`User_ID`),
-  ADD KEY `RelScrapsell` (`Scrap_ID`);
 
 --
 -- Indexes for table `sell_plant`
@@ -353,7 +290,7 @@ ALTER TABLE `user_table`
 -- AUTO_INCREMENT for table `plant`
 --
 ALTER TABLE `plant`
-  MODIFY `Plant_ID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `Plant_ID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `plant_order`
@@ -365,7 +302,7 @@ ALTER TABLE `plant_order`
 -- AUTO_INCREMENT for table `scrap`
 --
 ALTER TABLE `scrap`
-  MODIFY `Scrap_ID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `Scrap_ID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `user_table`

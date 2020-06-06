@@ -150,7 +150,7 @@ catch(Exception $e)
 	{
 		//alert(id);
 		var len = plantid.push(id);
-		alert(plantid);
+		//alert(plantid);
 		var x= document.getElementById("cart"+id);
 			x.style.display="none";
 		var y= document.getElementById("go"+id);

@@ -164,11 +164,11 @@ catch(Exception $e)
 <form id="myForm" action="payment.php" method="post"> 
 		<input type="hidden" id="str" name="str" value="" />
 		<input type="hidden" id="tot" name="tot" value="" />
-		<div class="checkout">
+		
 		<script
     src="https://checkout.razorpay.com/v1/checkout.js"
 	data-key="rzp_test_nM5VWM1iiyUfvS" 
-    data-amount= "100"; 
+    data-amount= "12000"; 
     data-currency="INR"
     data-buttontext="Pay"
     data-name="<?php echo "Rahul"; ?>"
@@ -176,7 +176,7 @@ catch(Exception $e)
     data-prefill.name="rounak"
     data-prefill.email="<?php echo $_SESSION['email']; ?>"
     data-theme.color="#F37254"
-	></script></div>
+	></script>
 </form>
 <br><br><br><hr>
 <script>
